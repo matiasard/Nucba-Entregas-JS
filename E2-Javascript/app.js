@@ -12,7 +12,7 @@
 const arreglo = [
 	{
 		id: 3,
-		nombre: "Pizza hawaiana",
+		nombre: "Pizza Hawaiana",
 		ingredientes: [
 			"Salsa de tomate",
 			"rodajas de piña",
@@ -25,7 +25,7 @@ const arreglo = [
 	},
 	{
 		id: 4,
-		nombre: "Pizza de primavera",
+		nombre: "Pizza de Primavera",
 		ingredientes: [
 			"Salsa de tomate",
 			"Muzzarella",
@@ -91,32 +91,30 @@ console.log(arreglo);
 
 // A
 console.log("🔥 a) Las pizzas que tengan un id impar.");
-arreglo.forEach((elemento) => {
-	if (elemento.id % 2 !== 0) {
-		console.log("El id: " + elemento.id + " es impar");
+arreglo.forEach(({ id }) => {
+	if (id % 2 !== 0) {
+		console.log("El id: " + id + " es impar");
 	}
 });
 
 // B
 console.log("\n\n🔥 b) ¿Hay alguna pizza que valga menos de $600?");
-const b = arreglo.some((elemento) => elemento.precio < 600);
+const b = arreglo.some(({ precio }) => precio < 600);
 
 console.log(b);
 
 // C
 console.log("\n\n🔥 c) Los nombres de todos las pizzas.");
-arreglo.forEach((elemento, i) => console.log(`${i + 1}) ${elemento.nombre}`));
+arreglo.forEach(({ nombre }, i) => console.log(`${i + 1}) ${nombre}`));
 
 // D
 console.log("\n\n🔥 d) Los precios de las pizzas.");
-const precioPizzas = arreglo.forEach((elemento, i) =>
-	console.log(`${i + 1}) $${elemento.precio}`)
+const precioPizzas = arreglo.forEach(({ precio }, i) =>
+	console.log(`${i + 1}) $${precio}`)
 );
-
-console.log();
 
 //E
 console.log("\n\n🔥 e) El nombre de cada pizza con su respectivo precio.");
-arreglo.forEach((elemento, i) =>
-	console.log(`${i + 1}) ${elemento.nombre}, $${elemento.precio}`)
+arreglo.forEach(({ nombre, precio }, i) =>
+	console.log(`${i + 1}) ${nombre}: $${precio}`)
 );
