@@ -91,17 +91,14 @@ console.log(arreglo);
 
 // A
 console.log("🔥 a) Las pizzas que tengan un id impar.");
-arreglo.forEach(({ id }) => {
-	if (id % 2 !== 0) {
-		console.log("El id: " + id + " es impar");
-	}
+arreglo.forEach(({ nombre, id }) => {
+	if (id % 2 !== 0) console.log(`La ${nombre} con id ${id}: es impar`);
 });
 
 // B
 console.log("\n\n🔥 b) ¿Hay alguna pizza que valga menos de $600?");
-const b = arreglo.some(({ precio }) => precio < 600);
-
-console.log(b);
+const b = arreglo.some(({ precio }) => precio < 600); // True or False
+console.log(`${b ? "Si, si hay" : "No, no hay"} pizza que valga menos de $600`);
 
 // C
 console.log("\n\n🔥 c) Los nombres de todos las pizzas.");
