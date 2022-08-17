@@ -10,7 +10,7 @@
 const pizzaList = [
 	{
 		id: 2,
-		nombre: "Pizza hawaiana",
+		nombre: "Pizza Hawaiana",
 		ingredientes: [
 			"Salsa de tomate",
 			"rodajas de piña",
@@ -24,7 +24,7 @@ const pizzaList = [
 	},
 	{
 		id: 4,
-		nombre: "Pizza de primavera",
+		nombre: "Pizza de Primavera",
 		ingredientes: [
 			"Salsa de tomate",
 			"Muzzarella",
@@ -118,13 +118,21 @@ btnBuscador.addEventListener("click", (e) => {
 		pizza.nombre.toLowerCase().includes(pizzaInput)
 	);
 
-	displayCards(pizzaResultado);
+	if (pizzaResultado.length > 0) displayCards(pizzaResultado);
+	if (pizzaResultado.length === 0)
+		cardsContainer.innerHTML = `<div class="headings">
+			<h2>Sin Resultados</h2>
+			<h3>No se encontro ningun resultado con "${pizzaInput}"</h3>
+		</div>`;
+
+	busqueda.value = "";
 });
 
 //*✨ Funcion Reset Filtro
 btnResetFilter.addEventListener("click", (e) => {
 	e.preventDefault();
 	displayCards(JSON.parse(localStorage.getItem("pizzas")));
+	busqueda.value = "";
 });
 
 //*✨ Funcion Mostrar info del Array de Pizza
@@ -143,15 +151,15 @@ function displayCards(pizzas) {
 		//*📝 Plantilla HTML que se insertara en el elemento padre de las Cards
 		let html = `
     <article class="card">
-        <header>
+        <header class="card__header">
           <h3>${pizza.nombre}</h3>
         </header>
-        <div class="">
+        <div class="card__content">
           <img src="${pizza.img}" alt="${pizza.nombre}">
 					${ingredientesUl.outerHTML}
         </div>
           
-        <footer>$${pizza.precio}</footer>
+        <footer>Precio: <strong>$${pizza.precio}</strong></footer>
       </article>`;
 
 		//*📝 Insertando la card en el elemento contenedor de las cards
