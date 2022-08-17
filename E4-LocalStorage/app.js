@@ -95,7 +95,6 @@ const pizzaList = [
 //*📝 stringify() - Nos ayuda a convertir la matriz en una cadena
 localStorage.setItem("pizzas", JSON.stringify(pizzaList));
 //*📝 parse() - Nos permite analizar la cadena y construir una matriz de JavaScript
-// JSON.parse(localStorage.getItem(key));
 
 //*✨ Variables Global
 let cardsContainer = document.querySelector("#cards-container");
@@ -104,27 +103,13 @@ console.log(JSON.parse(localStorage.getItem("pizzas")));
 
 const displayCards = function (pizzas) {
 	cardsContainer.innerHTML = "";
-	// console.log(pizzas[0].ingredientes);
-	// pizzas.forEach((pizza) => {
-	// 	console.log(pizza.ingredientes);
-	// 	let ingredientes = document.createElement("li");
-	// 	ingredientes.innerHTML += `<li>${ingrediente}</li>`;
-	// });
+
 	pizzas.forEach((pizza) => {
 		let ingredientesUl = document.createElement("ul");
 
 		pizza.ingredientes.forEach((ingrediente) => {
-			// ingredientesUl.insertAdjacentHTML("beforeend", `<li>${ingrediente}</li>`);
-			ingredientesUl.innerHTML += `<li>${ingrediente}</li>`;
+			ingredientesUl.insertAdjacentHTML("beforeend", `<li>${ingrediente}</li>`);
 		});
-
-		// console.log(ingredientesUl.childNodes);
-		console.log(ingredientesUl.outerHTML);
-
-		// let textHtml = "";
-		// ingredientesUl.childNodes.forEach(
-		// 	(element) => (textHtml += element.outerHTML)
-		// );
 
 		let html = `
     <article class="card">
@@ -139,8 +124,7 @@ const displayCards = function (pizzas) {
         <footer>$${pizza.precio}</footer>
       </article>`;
 
-		console.log(html);
-		cardsContainer.insertAdjacentHTML("afterbegin", html);
+		cardsContainer.insertAdjacentHTML("beforeend", html);
 	});
 };
 
