@@ -94,23 +94,53 @@ const pizzaList = [
 
 //*📝 stringify() - Nos ayuda a convertir la matriz en una cadena
 localStorage.setItem("pizzas", JSON.stringify(pizzaList));
-//*📝 parse() - Nos permite analizar la cadena y construir una matriz de JavaScript
 
-//*✨ Variables Global
+//*------------_______ ✨ DATOS ✨ _______------------
 let cardsContainer = document.querySelector("#cards-container");
+//*📝 parse() - Nos permite analizar la cadena y construir un array de JS
+let pizzasStorage = JSON.parse(localStorage.getItem("pizzas"));
+const busqueda = document.getElementById("buscador");
+const btnBuscador = document.getElementById("btn-buscador");
+const btnResetFilter = document.getElementById("btn-resetFilter");
 
-console.log(JSON.parse(localStorage.getItem("pizzas")));
+console.log(pizzasStorage);
 
-const displayCards = function (pizzas) {
+//*------------_______ ✨ FUNCIONES ✨ _______------------
+displayCards(pizzasStorage);
+
+//*🔎 Funcion Buscador de Pizzas
+btnBuscador.addEventListener("click", (e) => {
+	e.preventDefault();
+	const pizzas = JSON.parse(localStorage.getItem("pizzas"));
+	const pizzaInput = busqueda.value.trim().toLowerCase();
+
+	const pizzaResultado = pizzas.filter((pizza) =>
+		pizza.nombre.toLowerCase().includes(pizzaInput)
+	);
+
+	displayCards(pizzaResultado);
+});
+
+//*✨ Funcion Reset Filtro
+btnResetFilter.addEventListener("click", (e) => {
+	e.preventDefault();
+	displayCards(JSON.parse(localStorage.getItem("pizzas")));
+});
+
+//*✨ Funcion Mostrar info del Array de Pizza
+function displayCards(pizzas) {
 	cardsContainer.innerHTML = "";
 
 	pizzas.forEach((pizza) => {
+		//*📝 Creacion del elemento padre
 		let ingredientesUl = document.createElement("ul");
 
+		//*📝 Agregando elemento dentro del elemento Padre
 		pizza.ingredientes.forEach((ingrediente) => {
 			ingredientesUl.insertAdjacentHTML("beforeend", `<li>${ingrediente}</li>`);
 		});
 
+		//*📝 Plantilla HTML que se insertara en el elemento padre de las Cards
 		let html = `
     <article class="card">
         <header>
@@ -124,8 +154,7 @@ const displayCards = function (pizzas) {
         <footer>$${pizza.precio}</footer>
       </article>`;
 
+		//*📝 Insertando la card en el elemento contenedor de las cards
 		cardsContainer.insertAdjacentHTML("beforeend", html);
 	});
-};
-
-displayCards(JSON.parse(localStorage.getItem("pizzas")));
+}

@@ -15,7 +15,7 @@
   <h1>Pizza</h1>
 
   <div class="container">
-    <form>
+    <form autocomplete="off">
 
       <div class="grid">
         <div>
@@ -23,7 +23,10 @@
           <input type="buscador" id="buscador" name="buscador" placeholder="Busqueda" required>
           <!-- <small>We'll never share your email with anyone else.</small> -->
         </div>
-        <button type="submit">Submit</button>
+        <div class="grid">
+          <button type="submit" id="btn-buscador">Buscar</button>
+          <button type="submit" id="btn-resetFilter">Ver Todos</button>
+        </div>
       </div>
     </form>
 
@@ -31,26 +34,7 @@
 
     <div id="cards-container" class="cards">
       <p>articulos</p>
-      <!-- <article class="card">
-        <header>
-          <h3>A short heading</h3>
-        </header>
-        <div class="content">
-          <img src="https://mdn.github.io/css-examples/css-cookbook/balloons.jpg" alt="Hot air balloons">
-        </div>
-        <footer>I have a footer!</footer>
-      </article>
-
-      <article class="card">
-        <header>
-          <h3>A short heading</h3>
-        </header>
-        <div class="content">
-          <img src="https://mdn.github.io/css-examples/css-cookbook/balloons.jpg" alt="Hot air balloons">
-        </div>
-        <footer> </footer>
-      </article>
-
+      <!-- 
       <article class="card">
         <header>
           <h3>A longer heading in this card</h3>
